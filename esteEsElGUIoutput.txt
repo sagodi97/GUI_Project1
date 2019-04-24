@@ -1,0 +1,3 @@
+java.awt.Color[r=81,g=251,b=112],507,273,314
+java.awt.Color[r=81,g=251,b=112],607,373,414
+java.awt.Color[r=81,g=251,b=112],107,7,14

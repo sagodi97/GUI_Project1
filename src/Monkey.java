@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class Monkey {
@@ -11,8 +14,42 @@ public class Monkey {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 Mango m = new Mango();
                 m.setBackground(Color.BLACK);
-                frame.add(m);
-                frame.setSize(900,900);
+                JButton startButton = new JButton("Start");
+                startButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        m.queHago();
+                        m.messItUp();
+                        startButton.setText(m.botonText);
+                    }
+                });
+
+                JButton apagueYvamonos = new JButton("Save Canvas");
+                apagueYvamonos.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try{
+                            m.saveToFile();
+                        }catch (IOException ex){
+                            System.out.println(ex);
+                        }
+
+                    }
+                });
+                JButton readAndDraw = new JButton("Read & Draw");
+                readAndDraw.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        m.readAndDraw();
+                    }
+                });
+                frame.setLayout(new BorderLayout());
+                frame.add(m, BorderLayout.CENTER);
+                frame.add(startButton, BorderLayout.SOUTH);
+                frame.add(apagueYvamonos, BorderLayout.BEFORE_LINE_BEGINS);
+                frame.add(readAndDraw, BorderLayout.BEFORE_FIRST_LINE);
+
+                frame.setSize(1300,800);
                 frame.setVisible(true);
             }
         });
